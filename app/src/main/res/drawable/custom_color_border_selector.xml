@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/color_disable" android:state_enabled="true" />
+    <item android:drawable="@color/color_disable" android:state_enabled="false" />
+</selector>-->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_bg_border" android:state_enabled="true" />
+    <item android:drawable="@drawable/ic_bg_border_disable" android:state_enabled="false" />
+    <item android:drawable="@drawable/ic_bg_border_disable" />
+</selector>

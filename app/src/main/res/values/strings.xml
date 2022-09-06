@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">DemoRCH</string>
+    <string name="choose_time">Choose Time</string>
+    <string name="lb_beers">Punk Beers</string>
+    <string name="lb_beer_detail">Bear Details</string>
+    <string name="beer_description">Beer</string>
+    <string name="txt_from">Brewed After</string>
+    <string name="filter_time">Filter</string>
+    <string name="txt_to">Brewed Before</string>
+    <string name="txt_time_filter_error">Time is not empty</string>
+    <string name="txt_clear_filter_time">Clear</string>
+
+    <string name="txt_description_header">Description</string>
+    <string name="txt_information_header">Information</string>
+
+</resources>

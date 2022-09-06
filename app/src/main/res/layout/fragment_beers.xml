@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.beer.BeersFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:id="@+id/tv_lb_after"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        android:text="@string/txt_from"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_brewed_after"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_brewed_after" />
+
+    <TextView
+        android:gravity="center"
+        android:padding="@dimen/padding_small"
+        android:id="@+id/tv_brewed_after"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        android:background="@drawable/ic_bg_border"
+        app:layout_constraintEnd_toEndOf="@id/gl"
+        app:layout_constraintStart_toEndOf="@id/tv_lb_after"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="dgdsg" />
+
+    <TextView
+        android:id="@+id/tv_lb_before"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        android:text="@string/txt_to"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_brewed_after"
+        app:layout_constraintStart_toEndOf="@id/gl"
+        app:layout_constraintTop_toTopOf="@+id/tv_brewed_after" />
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/tv_brewed_before"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/ic_bg_border"
+        android:padding="@dimen/padding_small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toEndOf="@id/tv_lb_before"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="dgdsg" />
+
+    <TextView
+        android:id="@+id/btn_clear_filter_time"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        android:layout_marginTop="@dimen/margin"
+        android:gravity="center"
+        android:text="@string/txt_clear_filter_time"
+        android:background="@drawable/ic_bg_border"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@id/btn_filter_time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_brewed_after" />
+
+    <TextView
+        android:id="@+id/btn_filter_time"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        android:layout_marginTop="@dimen/margin"
+        android:gravity="center"
+        android:text="@string/filter_time"
+        android:background="@drawable/ic_bg_border"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_clear_filter_time"
+        app:layout_constraintTop_toBottomOf="@id/tv_brewed_after" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_beer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_filter_time" />
+</androidx.constraintlayout.widget.ConstraintLayout>
