@@ -37,10 +37,8 @@ class BeersFragment : BaseFragment(R.layout.fragment_beers) {
         GlobalScope.launch(Dispatchers.Main) {
             adapter.clearData()
             setEndlessRecyclerOnScrollListener()
-            getBeers(1)
-
-
         }
+        getBeers(1)
     }
 
     override fun bindView() = with(binding) {
@@ -86,6 +84,7 @@ class BeersFragment : BaseFragment(R.layout.fragment_beers) {
         adapter = BeerAdapter(
             itemsCells = arrayListOf(),
             onSelectedItem = { beer ->
+
                 val action = BeersFragmentDirections.actionListFragmentToDetailsFragment(beer.id)
                 findNavController().navigate(action)
             }

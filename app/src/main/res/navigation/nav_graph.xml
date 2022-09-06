@@ -14,7 +14,7 @@
     <action
         android:id="@+id/action_listFragment_to_detailsFragment"
         app:destination="@id/detailsFragment"
-        app:popUpToInclusive="true"/>
+        app:popUpToInclusive="false"/>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.atg.demorch.ui.main.detail.BeerDetailFragment"
