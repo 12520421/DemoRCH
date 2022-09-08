@@ -39,8 +39,8 @@ class BeerDetailFragment : BaseFragment(R.layout.fragment_beer_detail) {
         binding.apply {
             imgDetailsBear.loadImage(beer.image_url)
             tvName.text = beer.name
-            tvYear.text = "brewed : ${beer.first_brewed}"
-            tvAbv.text = "abv : ${beer.abv.toString()}"
+            tvYear.text = "${requireContext().resources.getString(R.string.txt_brewed)} : ${beer.first_brewed}"
+            tvAbv.text = "${requireContext().resources.getString(R.string.txt_abv)} : ${beer.abv.toString()}"
             tvDescription.text = beer.description
         }
     }

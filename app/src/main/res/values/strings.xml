@@ -12,5 +12,10 @@
 
     <string name="txt_description_header">Description</string>
     <string name="txt_information_header">Information</string>
+    <string name="txt_loading">Loading</string>
+    <string name="txt_loading_message">Wait while loading...</string>
+    <string name="txt_error">Error</string>
+    <string name="txt_brewed">Brewed</string>
+    <string name="txt_abv">Abv</string>
 
 </resources>

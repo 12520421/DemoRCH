@@ -16,12 +16,13 @@ abstract class BaseFragment(contentLayoutId: Int) : Fragment(contentLayoutId) {
     }
 
     abstract fun bindView()
+
     abstract fun observer()
 
     fun showAlert(title: String? = null, message: String) {
         requireActivity().runOnUiThread {
             AlertDialog.Builder(context)
-                .setTitle(title ?: "Error")
+                .setTitle(title ?: requireContext().resources.getString(com.atg.demorch.R.string.txt_error))
                 .setMessage(message)
                 .setCancelable(true)
                 .setPositiveButton(
@@ -40,8 +41,8 @@ abstract class BaseFragment(contentLayoutId: Int) : Fragment(contentLayoutId) {
         requireActivity().runOnUiThread {
             if (progress == null) {
                 progress = ProgressDialog(context)
-                progress!!.setTitle("Loading")
-                progress!!.setMessage("Wait while loading...")
+                progress!!.setTitle(requireContext().resources.getString(com.atg.demorch.R.string.txt_loading))
+                progress!!.setMessage(requireContext().resources.getString(com.atg.demorch.R.string.txt_loading_message))
                 progress!!.setCancelable(true) // disable dismiss by tapping outside of the dialog
             }
             progress!!.show()

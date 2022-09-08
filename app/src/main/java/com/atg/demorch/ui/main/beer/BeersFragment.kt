@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.dzmitry_lakisau.month_year_picker_dialog.MonthYearPickerDialog
@@ -14,7 +15,6 @@ import com.atg.demorch.ui.main.beer.adapter.BeerAdapter
 import com.atg.demorch.utils.BaseFragment
 import com.atg.demorch.utils.EndlessRecyclerOnScrollListener
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -31,14 +31,6 @@ class BeersFragment : BaseFragment(R.layout.fragment_beers) {
         super.onViewCreated(view, savedInstanceState)
 
         loadFirstData()
-    }
-
-    private fun loadFirstData() {
-        GlobalScope.launch(Dispatchers.Main) {
-            adapter.clearData()
-            setEndlessRecyclerOnScrollListener()
-        }
-        getBeers(1)
     }
 
     override fun bindView() = with(binding) {
@@ -64,6 +56,10 @@ class BeersFragment : BaseFragment(R.layout.fragment_beers) {
         }
     }
 
+    private fun loadFirstData() {
+        getBeers(1)
+    }
+
     override fun observer() = with(viewModel) {
         onBeersResult.observe(viewLifecycleOwner) {
             if (it?.isEmpty() == false) {
@@ -81,20 +77,24 @@ class BeersFragment : BaseFragment(R.layout.fragment_beers) {
     }
 
     private fun initRV() {
-        adapter = BeerAdapter(
-            itemsCells = arrayListOf(),
-            onSelectedItem = { beer ->
+        lifecycleScope.launch(Dispatchers.Main) {
+            adapter = BeerAdapter(
+                itemsCells = arrayListOf(),
+                onSelectedItem = { beer ->
 
-                val action = BeersFragmentDirections.actionListFragmentToDetailsFragment(beer.id)
-                findNavController().navigate(action)
-            }
-        )
-        adapter.notifyDataSetChanged()
-        binding.rvBeer.adapter = adapter
-        mLayoutManager = LinearLayoutManager(requireContext())
-        binding.rvBeer.layoutManager = mLayoutManager
-        binding.rvBeer.setHasFixedSize(true)
-        //setEndlessRecyclerOnScrollListener()
+                    val action =
+                        BeersFragmentDirections.actionListFragmentToDetailsFragment(beer.id)
+                    findNavController().navigate(action)
+                }
+            )
+            adapter.notifyDataSetChanged()
+            binding.rvBeer.adapter = adapter
+            mLayoutManager = LinearLayoutManager(requireContext())
+            binding.rvBeer.layoutManager = mLayoutManager
+            binding.rvBeer.setHasFixedSize(true)
+            adapter.clearData()
+            setEndlessRecyclerOnScrollListener()
+        }
     }
 
     private fun setEndlessRecyclerOnScrollListener() {
