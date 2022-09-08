@@ -10,7 +10,7 @@ import com.atg.demorch.ext.loadImage
 import com.atg.demorch.model.Beer
 
 class BeerAdapter(
-    private var itemsCells: ArrayList<Beer?>,
+    private var items: ArrayList<Beer?>,
     val onSelectedItem: ((Beer) -> Unit)? = null
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -18,13 +18,13 @@ class BeerAdapter(
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     fun addData(dataViews: ArrayList<Beer?>) {
-        this.itemsCells.addAll(dataViews)
+        this.items.addAll(dataViews)
         notifyDataSetChanged()
     }
 
     fun clearData() {
-        val size = this.itemsCells.size
-        this.itemsCells.clear()
+        val size = this.items.size
+        this.items.clear()
         notifyItemRangeRemoved(0, size)
     }
 
@@ -35,12 +35,12 @@ class BeerAdapter(
     }
 
     override fun getItemCount(): Int {
-        return itemsCells.size
+        return items.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val binding = ItemRowBeerBinding.bind(holder.itemView)
-        val item = itemsCells[position]
+        val item = items[position]
 
         binding.tvBeerName.text = item?.name
         binding.tvBeerDescription.text = item?.description

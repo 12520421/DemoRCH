@@ -23,7 +23,7 @@ class BeerDetailFragment : BaseFragment(R.layout.fragment_beer_detail) {
 
     override fun observer() = with(viewModel) {
         onBeerDetailResult.observe(viewLifecycleOwner) { beer ->
-            beer?.let { loadData(it) }
+            beer?.let { loadData(beer = it) }
         }
 
         onLoading.observe(viewLifecycleOwner) {
@@ -31,7 +31,10 @@ class BeerDetailFragment : BaseFragment(R.layout.fragment_beer_detail) {
         }
 
         onNetworkError.observe(viewLifecycleOwner) {
-            showAlert(null, it)
+            showAlert(
+                title = null,
+                message = it
+            )
         }
     }
 
@@ -39,8 +42,10 @@ class BeerDetailFragment : BaseFragment(R.layout.fragment_beer_detail) {
         binding.apply {
             imgDetailsBear.loadImage(beer.image_url)
             tvName.text = beer.name
-            tvYear.text = "${requireContext().resources.getString(R.string.txt_brewed)} : ${beer.first_brewed}"
-            tvAbv.text = "${requireContext().resources.getString(R.string.txt_abv)} : ${beer.abv.toString()}"
+            tvYear.text =
+                "${requireContext().resources.getString(R.string.txt_brewed)} : ${beer.first_brewed}"
+            tvAbv.text =
+                "${requireContext().resources.getString(R.string.txt_abv)} : ${beer.abv.toString()}"
             tvDescription.text = beer.description
         }
     }
@@ -48,6 +53,6 @@ class BeerDetailFragment : BaseFragment(R.layout.fragment_beer_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         idBeer = arguments?.let { BeerDetailFragmentArgs.fromBundle(it).beer }
-        idBeer?.let { viewModel.getBeerDetail(it) }
+        idBeer?.let { viewModel.getBeerDetail(idBeer = it) }
     }
 }

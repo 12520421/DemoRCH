@@ -26,13 +26,18 @@ class BeerRepositoryImpl(
         pageNumber: Int
     ): Result<ArrayList<Beer?>> {
         val response =
-            apiService.getAllBears(brewedBefore, brewedAfter, pageNumber, pageSize).execute()
+            apiService.getAllBears(
+                brewedAfter = brewedBefore,
+                brewedBefore = brewedAfter,
+                page = pageNumber,
+                itemsPerPage = pageSize
+            ).execute()
         return Utils.toResponseResult(response)
     }
 
     override suspend fun getBeer(idBeer: Int): Result<List<Beer>> {
         val response =
-            apiService.getBear(idBeer).execute()
+            apiService.getBear(id = idBeer).execute()
         return Utils.toResponseResult(response)
     }
 

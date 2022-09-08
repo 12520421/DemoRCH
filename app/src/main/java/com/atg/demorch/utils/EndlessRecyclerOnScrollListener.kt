@@ -13,7 +13,7 @@ abstract class EndlessRecyclerOnScrollListener(private val mLinearLayoutManager:
     private var loading = true
 
     // The minimum amount of items to have below your current scroll position before loading more.
-    private val visibleThreshold = 5
+    private val visibleThreshold = 2
     var firstVisibleItem = 0
     var visibleItemCount = 0
     var totalItemCount = 0
